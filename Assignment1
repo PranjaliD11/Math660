@@ -1,0 +1,79 @@
+---
+title: "DeshmukhPranjali-HW1"
+author: "Pranjali Deshmukh"
+date: "2022-09-30"
+output: pdf_document
+---
+
+## R Markdown
+
+Q1.The data set citibike consists of total observations of 1196942 bike rides.
+
+Q2.Observing the pie chart below it can be stated that 69.17% of the riders can be classified as male riders, 22.44% of the riders are assumed to be female.
+```{r }
+citibike<- read.csv("201611-citibike-tripdata.csv", header=T)
+citibike.table <- table(citibike$Gender)
+citibike.percent<-100*citibike.table/sum(citibike.table)
+temp.name <- paste(format(citibike.percent, digits=3,trim=T), "%", sep="-")
+citibike.names <- paste(names(citibike.table),temp.name)
+pie(citibike.table, labels=citibike.names)
+```
+Q3.The graph of ages and number of riders is plotted below. Along with summary of the ages of the riders.It is observed that there are almost 96366 values left blank in the birth year coloumn.
+```{r}
+hist(citibike$Birth.Year, main="Number of riders v/s birth year")
+citibike$age<-2022-citibike$Birth.Year
+summary(citibike$age)
+```
+## 
+Q4. According to pie chart below we can conclude that almost 7.18% of the riders are non annual subscribers.
+
+```{r}
+citibike.table <- table(citibike$User.Type)
+citibike.percent<-100*citibike.table/sum(citibike.table)
+temp.name <- paste(format(citibike.percent, digits=3,trim=T), "%", sep="-")
+citibike.names <- paste(names(citibike.table), temp.name)
+pie(citibike.table, labels=citibike.names)
+
+```
+Q5.Different time plots are mentioned below. It can be noticed that people tend to buy 24hr passes more that 3 day passes.
+```{r}
+rides_bikes<-read.csv("2016Q4-RidershipMembership.csv",header=T)
+ts1=ts.plot(rides_bikes$X24.Hour.Passes.Purchased.Today)
+ts2=ts.plot(rides_bikes$X3.Day.Passes.Purchased.Today)
+```
+Since values of trip duration vary a lot and with minimum value being 61 and max being 4319753,the histogram plotted below is of data between first and third quartile.
+```{r}
+summary(citibike$Trip.Duration)
+hist(citibike$Trip.Duration,breaks=100000, xlim=c(369,1017))
+```
+Q7.Time plot of number of bike trips.
+```{r}
+ts3=ts.plot(rides_bikes$Trips.today) 
+summary(rides_bikes$Trips.today)
+```
+Q8.Histograms of data.
+```{r}
+oct<-rides_bikes[1:31,]
+hist(oct$Trips.today,breaks=10,main="Number of trips in Oct 2016")
+hist(rides_bikes$Trips.today,breaks=10,main="Number of trips in 4th Quater of 2016")
+```
+Q9(A)There are various values mentioned N/A in the dataset, which are unusual values.
+
+Q9(B) According to the summary most number of unique riders was 69758 on 10/19/2016.
+```{r}
+summary(rides_bikes$Trips.today)
+```
+Q9(C)There are 606 unique station names in citi bike dataset.
+```{r}
+
+length(unique(citibike$Start.Station.Name))
+
+```
+Q9(D)Number of unique Citi Bikes used at least once in the dataset is :
+```{r}
+length(unique(citibike$Bike.ID))
+```
+Q9(E)On 10/17/2016 most 3 day passes were purchased according to the summary.
+```{r}
+summary(rides_bikes$X3.Day.Passes.Purchased.Today)
+```
