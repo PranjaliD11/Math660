@@ -4,5 +4,5 @@
 
 File contains various R assignments which are I have completed during my coursework.
 
-###Basics plotting in R
-This code includes basic plotting in R 
+First one includes basic plot which help with data analysis
+Second has made use of R library like ggplot 
