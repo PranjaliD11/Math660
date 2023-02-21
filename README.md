@@ -1,8 +1,6 @@
-# Math660
+## Statistical  Data Analysis Using R ##
+============= These include several assignments which I have solved under my coursework
 
-## Statistical Analysis Using R 
-
-File contains various R assignments which are I have completed during my coursework.
 
 First one includes basic plot which help with data analysis
 
